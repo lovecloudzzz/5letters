@@ -1,7 +1,7 @@
 import socket
 import threading
 from PyQt6.QtWidgets import QApplication
-from back.players import Player1, Player2
+from players import Player1, Player2
 
 
 def receive():
@@ -17,7 +17,7 @@ def receive():
                             window.massive[window.i - 5 + j].setStyleSheet("background-color:#ffb833; border-radius: 10px")
                             window.flag += 1
                         elif window.input[j].lower() not in window.word:
-                            window.massive[window.i - 5 + j].setStyleSheet("background-color:#9c9c9c; color:#c7c7c7")
+                            window.massive[window.i - 5 + j].setStyleSheet("background-color:#606160; color:white; border-radius: 10px")
                     if window.flag == 5:
                         window.mistake.setText('Победа!')
                         window.Play.setEnabled(False)

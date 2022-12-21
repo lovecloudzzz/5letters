@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QMainWindow
 
-from front import player1, player2
+import front.player2 as player2
+import front.player1 as player1
 
 
 class Player1(QMainWindow, player1.Ui_MainWindow):
@@ -18,17 +19,17 @@ class Player1(QMainWindow, player1.Ui_MainWindow):
     def check(self, ):
         word = self.word.text()
         if len(word) != 5:
-            self.mistake.setText('попробуйте другое слово')
+            self.mistake.setText('Попробуйте другое слово')
         else:
             word = word.lower()
             self.sock.send(word.encode('utf-8'))
             flag = self.sock.recv(1024).decode('utf-8')
             if flag == '1':
                 print(flag)
-                self.mistake.setText('слово загадано')
+                self.mistake.setText('Слово загадано')
                 self.Play.setEnabled(False)
             else:
-                self.mistake.setText('попробуйте другое слово')
+                self.mistake.setText('Попробуйте другое слово')
 
 
 class Player2(QMainWindow, player2.Ui_MainWindow):
@@ -67,6 +68,6 @@ class Player2(QMainWindow, player2.Ui_MainWindow):
 
     def check(self):
         if len(self.input) != 5:
-            self.mistake.setText('неполное слово')
+            self.mistake.setText('Неполное слово')
         else:
             self.sock.send(self.input.lower().encode('utf-8'))
